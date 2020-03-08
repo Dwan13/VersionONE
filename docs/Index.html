@@ -439,154 +439,116 @@
                 });
             }
         </script>
-        <!-- Sección de información de contacto para dudas o sugerencias
-  ###################################################################################################################################################-->
 
-        <section id="contacto">
-
-            <div class="contacto-info">
-                <div class="mail"><img src="imagenes/mail-icon.png" alt="">dwanveloza@gmail.com</div>
-                <div class="whatsapp"><img src="imagenes/whatsapp-icon.png" alt="">3214086006</div>
-            </div>
-
-
-            </div>
-            <h4>Últimas publicaciones</h4>
-
-            <div class="contenedor-libros owl-carousel owl-theme">
-                <div class="libro item">
-                    <a href="https://escolapau.uab.cat/img/qcp/introduccion_procesos_paz.pdf" target="_blank"><img src="imagenes/pazmundial.png">
-                        <p>Proceso de paz</p>
-                    </a>
-                </div>
-                <div class="libro item">
-                    <a href="http://www.agenciadenoticias.luz.edu.ve/images/stories/noticias3/abril_13/cultura-ciudadana-y-comunicacion-antanas-mockus.pdf" target="_blank"><img src="imagenes/cultura.jpg">
-                        <p>Cultura ciudadana</p>
-                    </a>
-                </div>
-                <div class="libro item">
-                    <a href="https://www.somoscapazes.org/catedra-de-la-paz.php" target="_blank"><img src="imagenes/catedra.png">
-                        <p>Cátedra de la paz</p>
-                    </a>
-                </div>
-                <div class="libro item">
-                    <a href="https://www.jep.gov.co/Paginas/JEP/Jurisdiccion-Especial-para-la-Paz.aspx" target="_blank"><img src="imagenes/JEP.jpg">
-                        <p>JEP</p>
-                    </a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Pie de página con información de contacto
+        <!-- Pie de página con información de contacto
 ###################################################################################################################################################-->
 
-    <footer>
-        <div class="contenedor">
-            <div class="redes">
-                <a href="#"><img src="imagenes/facebook.png" alt="imagen de facebook"></a>
-                <a href="#"><img src="imagenes/github.png" alt="imagen de facebook"></a>
-                <a href="#"><img src="imagenes/linkedin.png" alt="imagen de facebook"></a>
+        <footer>
+            <div class="contenedor">
+                <div class="redes">
+                    <a href="#"><img src="imagenes/facebook.png" alt="imagen de facebook"></a>
+                    <a href="#"><img src="imagenes/github.png" alt="imagen de facebook"></a>
+                    <a href="#"><img src="imagenes/linkedin.png" alt="imagen de facebook"></a>
+                </div>
+                <div class="parrafo">
+                    <p>© 2019 Instituto para la Pedagogia, la Paz y el Conflicto Urbano IPAZUD | Universidad Distrital Francisco José de Caldas . Todos los derechos reservados</p>
+                </div>
             </div>
-            <div class="parrafo">
-                <p>© 2019 Instituto para la Pedagogia, la Paz y el Conflicto Urbano IPAZUD | Universidad Distrital Francisco José de Caldas . Todos los derechos reservados</p>
-            </div>
-        </div>
-    </footer>
+        </footer>
 
 
-    <!-- Script para generar galería de publicaciones
+        <!-- Script para generar galería de publicaciones
 ###################################################################################################################################################-->
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
-    </script>
-    <script src="owl/owl.carousel.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('.owl-carousel').owlCarousel({
-                loop: true,
-                autoplay: true,
-                autoplayTimeout: 3000,
-                autoplayHoverPause: true,
-                margin: 10,
-                nav: true,
-                merge: true,
-                dots: false,
-                responsive: {
-                    0: {
-                        items: 1
-                    },
-                    600: {
-                        items: 3
-                    },
-                    1000: {
-                        items: 4
-                    }
-                }
-            })
-        })
-    </script>
-
-    <!-- Script para el despliegue de barra superior de búsqueda
-  ###################################################################################################################################################-->
-
-    <script>
-        // Aplicar funcioón cuando se realizce un cambio de posición
-        $(document).ready(function() {
-            // Dentro del mecanismo de scroll se incluye la función scrollTop cuando se desplaza desde arriba hacia abajo.
-            $(window).scroll(function() {
-                    scroll = $(window).scrollTop();
-                    if (scroll > 100) {
-                        $('.menu').css({
-                            "position": "fixed"
-                        });
-                        $('.menu').css({
-                            "width": "100%"
-                        });
-                        $('.menu').css({
-                            "top": "0"
-                        });
-                        $('.menu').css({
-                            "background": "#8c1919"
-                        });
-                        $('.menu a').css({
-                            "color": "#fff"
-                        });
-                        $('.logo').css({
-                            "color": "#fff"
-                        });
-                        $('.menu').css({
-                            "box-shadow": "rgba(0, 0, 0, 0.22) 6px 1px 1px"
-                        });
-                        $('.menu').css({
-                            "z-index": "100"
-                        });
-                    } else {
-                        // En caso de no ejecutarce scroll el menu es transaparente y se mantiene igual que al iniciar el navegador.
-                        $('.menu').css({
-                            "position": "relative"
-                        });
-                        $('.menu').css({
-                            "background": "transparent"
-                        });
-                        $('.menu').css({
-                            "box-shadow": "0 0 0"
-                        });
-                        $('.menu a').css({
-                            "color": "#fff"
-                        });
-                        $('.logo').css({
-                            "color": "#000"
-                        });
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+        </script>
+        <script src="owl/owl.carousel.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('.owl-carousel').owlCarousel({
+                    loop: true,
+                    autoplay: true,
+                    autoplayTimeout: 3000,
+                    autoplayHoverPause: true,
+                    margin: 10,
+                    nav: true,
+                    merge: true,
+                    dots: false,
+                    responsive: {
+                        0: {
+                            items: 1
+                        },
+                        600: {
+                            items: 3
+                        },
+                        1000: {
+                            items: 4
+                        }
                     }
                 })
-                // Para el funcionamiento de responsive desing se implementa una funcioón slideToggle que permite un menu desplegable en teléfonos celulares y tablets.
-            $('.menu-icon').click(function() {
-                $('header nav').slideToggle();
             })
+        </script>
 
-        })
-    </script>
+        <!-- Script para el despliegue de barra superior de búsqueda
+  ###################################################################################################################################################-->
+
+        <script>
+            // Aplicar funcioón cuando se realizce un cambio de posición
+            $(document).ready(function() {
+                // Dentro del mecanismo de scroll se incluye la función scrollTop cuando se desplaza desde arriba hacia abajo.
+                $(window).scroll(function() {
+                        scroll = $(window).scrollTop();
+                        if (scroll > 100) {
+                            $('.menu').css({
+                                "position": "fixed"
+                            });
+                            $('.menu').css({
+                                "width": "100%"
+                            });
+                            $('.menu').css({
+                                "top": "0"
+                            });
+                            $('.menu').css({
+                                "background": "#8c1919"
+                            });
+                            $('.menu a').css({
+                                "color": "#fff"
+                            });
+                            $('.logo').css({
+                                "color": "#fff"
+                            });
+                            $('.menu').css({
+                                "box-shadow": "rgba(0, 0, 0, 0.22) 6px 1px 1px"
+                            });
+                            $('.menu').css({
+                                "z-index": "100"
+                            });
+                        } else {
+                            // En caso de no ejecutarce scroll el menu es transaparente y se mantiene igual que al iniciar el navegador.
+                            $('.menu').css({
+                                "position": "relative"
+                            });
+                            $('.menu').css({
+                                "background": "transparent"
+                            });
+                            $('.menu').css({
+                                "box-shadow": "0 0 0"
+                            });
+                            $('.menu a').css({
+                                "color": "#fff"
+                            });
+                            $('.logo').css({
+                                "color": "#000"
+                            });
+                        }
+                    })
+                    // Para el funcionamiento de responsive desing se implementa una funcioón slideToggle que permite un menu desplegable en teléfonos celulares y tablets.
+                $('.menu-icon').click(function() {
+                    $('header nav').slideToggle();
+                })
+
+            })
+        </script>
 </body>
 
 </html>
