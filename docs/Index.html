@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <!-- responsive desing -->
+    <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1.0, maximun-scale=1.0">
+    <meta name="description" content="">
+    <!-- logotipo principal en la parte superior de la págnina -->
+    <link type="image/x-icon" rel="shortcut icon" href="imagenes/Logo.jpg">
+    <!-- Impartando estilos -->
+    <link rel="stylesheet" href="estilos.css">
+    <!-- Importando estilos de funte de google-->
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins|Righteous&display=swap" rel="stylesheet">
+    <!--  Importando libreria owlCarousel para uso del slider -->
+    <link rel="stylesheet" href="owl/owl.carousel.min.css">
+    <link rel="stylesheet" href="owl/owl.theme.default.min.css">
+    <!-- Librerias para el funcionamiento de ajax en nuestra págnia web -->
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js"></script>
+      <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+      <script type="text/javascript" src="main.js"></script>
+
+      <!-- Captura y procesamiento de datos para realizar la búsqueda en la base de datos mediante el uso de ajax en cada seccion-->
+      <script type="text/javascript" src="ScriptVideos"></script>
+      <script type="text/javascript" src="ScriptDocumentos"></script>
+      <script type="text/javascript" src="ScriptPublicaciones"></script>
+<!-- Creación del menú de búsqueda -->
+    <title>Pasantía IPAZUD</title>
+  </head>
+  <body>
+    <!-- Implementación de botón estático para contacto por whatsapp -->
+    <a id="whatsapp" title="Contacto vía whatsapp" href="https://api.whatsapp.com/send?phone=573214086006"><img src="imagenes/whatsapp.png" alt=""></a>
+<!-- ENCABEZADO
+############################################################################################################################################################ -->
+    <header>
+      <!-- Definimos contenido del menu -->
+    <div class="menu">
+      <!-- El contenido consta de una lista para moverse por todo el
+       buscador de acuerdo con cada Sección (audios, videos, documentos, publicaciones y contacto) -->
+      <div class="contenedor" id="contenedor-menu">
+      <a href="#"><p class="logo">BUSCADOR</p></a>
+      <img class="menu-icon"src="imagenes/menu.png" alt="ícno de menu desplegable">
+      <nav>
+        <ul class="lista-menu">
+          <li><a href="#Audios" alt="Audios">Audios</a> </li>
+          <li><a href="#Videos">Videos</a></li>
+          <li><a href="#Documentos">Documentos</a> </li>
+          <li><a href="#Publicaciones">Publicaciones</a> </li>
+          <li><a href="#contacto">Contacto</a> </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <!-- Portada -->
+    <div class="contenedor">
+      <div class="contenedor-titulo">
+        <div class="titulo">
+          <h1>IPAZUD</h1>
+          <h2>Instituto Universidad Distrital</h2>
+          <!-- Enlace rápido con la página principal del IPAZUD -->
+          <a href="https://ipazud.udistrital.edu.co/" title="Ir a la página oficial">Ver página oficial</a>
+        </div>
+      </div>
+    </div>
+    </header>
+
+  <!-- SECCIONES PARA BÚSQUEDA POR FILTROS -->
+    <main>
+
+
+      <!-- Primera Sección de búsqueda Audios
+    ###################################################################################################################################################-->
+      <section id="Audios">
+        <!-- La clase contenedor permite encapsular todo el material de búsqueda de tipo Audio -->
+        <div class="contenedor">
+          <h3>Audios</h3>
+          <div class="contenido">
+            <!-- Se definen etiquetas de aceurdo al critério de búsqueda y se solicita ingresar cada dato según corresponda -->
+            <form class="buscador" action="index.html" method="post">
+              <label for="TemaAudios">Tema:</label>
+              <br />
+              <input type="text" title="Buscar por tema en audio" placeholder="Ingrese un tema" id="TemaAudios" required>
+              <br />
+              <label for="ParticipanteAudios">Participante:</label>
+              <br />
+              <input type="text" title="Buscar por participante en audio" placeholder="Ingrese un nombre" id="ParticipanteAudios" required>
+              <br />
+              <!-- Etiqueta para el manejo de fechas por año -->
+
+              <label for="FechaAudios">Fecha:</label>
+              <br />
+              <input class="text" id="FechaAudios" title="Buscar por fecha en audio" placeholder="Ingrese un año" required>
+
+              <br />
+              <br />
+
+            </form>
+            <br />
+            <br />
+            <br />
+            <!-- Envío orden para búsqueda -->
+            <input type="submit" name="" value="Enviar" class="btn" onclick="creartablaAudios()">
+            <!-- Esquema de la tabla contenedora de la búsqueda para audios -->
+            <table>
+              <br />
+              <br />
+              <br />
+              <br />
+              <thead>
+                <th width="20">id</th>
+                <th width="40">tema</th>
+                <th width="50">participantes</th>
+                <th width="30">fecha</th>
+                <th width="150">link</th>
+              </thead>
+              <tbody id="cuerpoAudios">
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      <hr class="separator">
+      <script type="text/javascript">
+      function creartablaAudios(){
+
+$("#cuerpoAudios tr").remove();
+
+var temaAudio = document.getElementById("TemaAudios").value;
+var participanteAudio = document.getElementById("ParticipanteAudios").value;
+var añoAudio = document.getElementById("FechaAudios").value;
+$.ajax({
+    url     : "http://localhost:3000/audio/"+temaAudio+","+participanteAudio+","+añoAudio,
+    type    : "GET",
+    success : (function (data) {
+                  console.log(temaAudio);
+                  console.log(participanteAudio);
+                  if(document.getElementById(data)==null){
+                    alert("Datos no encontrados")
+                  }
+                  alert("Busqueda realizada con exito");
+                    for(var i=0; i<data.length; i++){
+                    var tr = `<tr>
+                        <td>`+data[i].id+`</td>
+                        <td>`+data[i].tema+`</td>
+                        <td>`+data[i].participantes+`</td>
+                        <td>`+data[i].fecha+`</td>
+                        <td> <iframe width="150" height="150" scrolling="no" frameborder="no" allow="autoplay" src="`+data[i].link+`"></iframe></td>
+                    </tr>`;
+                    $("#cuerpoAudios").append(tr)
+                    }
+              })
+});
+}</script>
+
+      <!-- Segunda sección de búsqueda Videos
+    ###################################################################################################################################################-->
+      <section id="Videos">
+        <div class="contenedor">
+          <h3>Videos</h3>
+          <div class="contenido">
+            <!-- Se definen etiquetas de aceurdo al critério de búsqueda y se solicita ingresar cada dato según corresponda -->
+            <form class="buscador" action="index.html" method="post">
+              <label for="TemaVideos">Tema:</label>
+              <br />
+              <input type="text" title="Buscar por tema en Videos" placeholder="Buscar" id="TemaVideos" required>
+              <br />
+              <label for="ParticipanteVideos">Participante:</label>
+              <br />
+              <input type="text" title="Buscar por participante en Videos" placeholder="Ingrese un nombre" id="ParticipanteVideos" required>
+              <br />
+              <label for="FechaVideos">Fecha:</label>
+              <br />
+              <!-- Etiqueta para el manejo de fechas por año -->
+
+              <input class="text" id="FechaVideos" title="Buscar por fecha en Videos" placeholder="Ingrese un año"></input>
+
+              <br />
+            </form>
+            <!-- Envío orden para búsqueda -->
+              <input type="submit" name="" value="Enviar" class="btn" id="botonvideos" onclick="creartablaVideos()">
+            <!-- Esquema de la tabla contenedora de la búsqueda para videos -->
+           <table>
+             <br />
+             <br />
+             <br />
+             <br />
+                <thead>
+                  <th width="20">id</th>
+                  <th width="40">tema</th>
+                  <th width="50">autor</th>
+                  <th width="30">fecha</th>
+                  <th width="150">link</th>
+                </thead>
+                <tbody id="cuerpoVideos">
+                </tbody>
+              </table>
+          </div>
+        </div>
+      </section>
+      <hr class="separator">
+      <!-- Tercera sección de búsqueda Documentos
+    ###################################################################################################################################################-->
+
+      <section id="Documentos">
+        <div class="contenedor">
+          <h3>Documentos</h3>
+          <div class="contenido">
+            <!-- Se definen etiquetas de aceurdo al critério de búsqueda y se solicita ingresar cada dato según corresponda -->
+            <form class="buscador" action="index.html" method="post">
+            <label for="Documento" >Tematica del documento:</label>
+            <br />
+            <input type="text" name="Documento" title="Buscar por temática del documento" placeholder="Ingrese palabras clave" id="temaDocumento" required>
+            <br />
+            <label for="Autor" >Ingrese autor:</label>
+            <br />
+            <input type="text" name="Autor" title="Buscar por autor del documento" placeholder="Ingrese un nombre" id="autorDocumento" required>
+            <br />
+            <label for="Tipo" >Tipo de documento:</label>
+            <br />
+            <!-- Se implementa un elemento de tipo select para escojer un tipo de documento -->
+            <select class="desplegar" name="Tipo" id="tipoDocumento" title="Buscar por tipo de documento" >
+              <option value="libro">Libro</option>
+              <option value="revista">Revista</option>
+              <option value="articulo">Artículo</option>
+              <option value="tesis">Tesis</option>
+              <option value="informe">Informe</option>
+              <option value="entrevista">Entrevista</option>
+              <option value="registro">Registro</option>
+            </select>
+            <br />
+            <label for="Area" >Área de estudio:</label>
+            <br />
+            <!-- Se implementa un elemento de tipo select para escojer entre diferentes areas de estudio -->
+            <select class="desplegar" name="Area"id="areaDocumento" title="Buscar por area temática del documento" >
+              <option value="democracia">Democracia y Ciudadanía </option>
+              <option value="memoria">Memoria y Conflicto</option>
+              <option value="territorio">Territorio y Desarraigo</option>
+            </select>
+            <br />
+            <!-- Etiqueta para el manejo de fechas por año -->
+            <label for="FechaDocumentos">Fecha:</label>
+            <br />
+            <input class="text" id="fechaDocumento" title="Buscar por fecha del documento" placeholder="Ingrese un año"></input>
+            <br />
+
+          </form>
+          <!-- Envío orden para búsqueda -->
+          <input type="submit" name="" value="Enviar" class="btn" onclick="creartablaDocumentos()">
+
+          <!-- Esquema de la tabla contenedora de la búsqueda para documentos -->
+          <table>
+            <br />
+            <br />
+            <br />
+            <br />
+            <thead>
+              <th width="20">id</th>
+              <th width="40">tema</th>
+              <th width="30">tipo</th>
+              <th width="30">area</th>
+              <th width="50">autor</th>
+              <th width="30">fecha</th>
+              <th width="150">link</th>
+            </thead>
+            <tbody id="cuerpoDocumentos">
+            </tbody>
+          </table>
+          </div>
+        </div>
+      </section>
+
+      <hr class="separator">
+
+      <!-- Cuerta sección de búsqueda Publicaciones
+    ################################################################################################################################################### -->
+      <section id="Publicaciones">
+        <div class="contenedor">
+          <h3>Publicaciones</h3>
+          <div class="form-group">
+            <!-- Se definen etiquetas de aceurdo al critério de búsqueda y se solicita ingresar cada dato según corresponda -->
+            <form class="buscador" action="index.html" method="post">
+              <label for="searchterm1"> Buscar: </label>
+              <br />
+              <input type="text" size="46" maxlength="256" id="temaPublicidad" name="temaPublicidad" title="Buscar por tema de publicación" placeholder="Igrese una palabra clave">
+              <br />
+              <label for="Participante">Participante:</label>
+              <br />
+              <input type="text" title="Buscar por participtante en la publicación" placeholder="Ingrese un nombre" id="participantePublicidad" required>
+              <br />
+              <label for="Tipo_Publicidad" >Tip de Publicación</label>
+              <!-- Se implementa un elemento de tipo select para escojer el tipo de publicación -->
+              <select class="" name="Tipo_Publicidad" title="Buscar por tipo de publicación" id="tipoPublicidad">
+                <option value="afiche">Afiche</option>
+                <option value="folleto">Folleto</option>
+                <option value="separador">Separador</option>
+                <option value="flyer">Flyer</option>
+              </select>
+              <br />
+              <!-- Etiqueta para el manejo de fechas por año -->
+              <label for="FechaPublica">Fecha:</label>
+              <br />
+              <input class="text" id="fechaPublicidad" title="Buscar por fehca de la publicación"  placeholder="Ingrese un año"></input>
+              <br />
+          </form>
+
+          <!-- Envío orden para búsqueda -->
+          <input type="submit" name="" value="Enviar" class="btn" onclick="creartablaPublicidad()">
+
+          <!-- Esquema de la tabla contenedora de la búsqueda para publicaciones -->
+          <table>
+            <br />
+            <br />
+            <br />
+            <br />
+            <thead>
+              <th width="20">id</th>
+              <th width="40">tema</th>
+              <th width="30">tipo</th>
+              <th width="50">participantes</th>
+              <th width="30">fecha</th>
+              <th width="150">link</th>
+            </thead>
+            <tbody id="cuerpoPublicidad">
+            </tbody>
+          </table>
+          </div>
+        </div>
+      </section>
+      <hr class="separator">
+    <!-- Sección de información de contacto para dudas o sugerencias
+  ###################################################################################################################################################-->
+
+      <section id="contacto">
+
+            <div class="contacto-info">
+              <div class="mail"><img src="imagenes/mail-icon.png" alt="">dwanveloza@gmail.com</div>
+              <div class="whatsapp"><img src="imagenes/whatsapp-icon.png" alt="">3214086006</div>
+            </div>
+
+
+          </div>
+          <h4>Últimas publicaciones</h4>
+
+          <div class="contenedor-libros owl-carousel owl-theme">
+            <div class="libro item">
+              <a href="https://escolapau.uab.cat/img/qcp/introduccion_procesos_paz.pdf" target="_blank"><img src="imagenes/pazmundial.png" ><p>Proceso de paz</p></a>
+            </div>
+            <div class="libro item">
+              <a href="http://www.agenciadenoticias.luz.edu.ve/images/stories/noticias3/abril_13/cultura-ciudadana-y-comunicacion-antanas-mockus.pdf" target="_blank"><img src="imagenes/cultura.jpg">
+                <p>Cultura ciudadana</p>
+              </a>
+            </div>
+            <div class="libro item">
+              <a href="https://www.somoscapazes.org/catedra-de-la-paz.php" target="_blank"><img src="imagenes/catedra.png">
+                <p>Cátedra de la paz</p>
+              </a>
+            </div>
+            <div class="libro item">
+              <a href="https://www.jep.gov.co/Paginas/JEP/Jurisdiccion-Especial-para-la-Paz.aspx" target="_blank"><img src="imagenes/JEP.jpg">
+                <p>JEP</p>
+              </a>
+            </div>
+          </div>
+        </section>
+    </main>
+
+<!-- Pie de página con información de contacto
+###################################################################################################################################################-->
+
+    <footer>
+        <div class="contenedor">
+          <div class="redes">
+            <a href="#"><img src="imagenes/facebook.png" alt="imagen de facebook"></a>
+            <a href="#"><img src="imagenes/github.png" alt="imagen de facebook"></a>
+            <a href="#"><img src="imagenes/linkedin.png" alt="imagen de facebook"></a>
+          </div>
+          <div class="parrafo">
+            <p>© 2019 Instituto para la Pedagogia, la Paz y el Conflicto Urbano IPAZUD  | Universidad Distrital Francisco José de Caldas . Todos los derechos reservados</p>
+          </div>
+        </div>
+      </footer>
+
+
+  <!-- Script para generar galería de publicaciones
+###################################################################################################################################################-->
+
+    <script
+    src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+    </script>
+    <script src="owl/owl.carousel.min.js"></script>
+    <script>
+    $(document).ready(function(){
+      $('.owl-carousel').owlCarousel({
+          loop:true,
+          autoplay:true,
+          autoplayTimeout:3000,
+          autoplayHoverPause:true,
+          margin:10,
+          nav:true,
+          merge:true,
+          dots:false,
+          responsive:{
+              0:{
+                  items:1
+              },
+              600:{
+                  items:3
+              },
+              1000:{
+                  items:4
+              }
+          }
+        })
+      })
+    </script>
+
+    <!-- Script para el despliegue de barra superior de búsqueda
+  ###################################################################################################################################################-->
+
+    <script>
+// Aplicar funcioón cuando se realizce un cambio de posición
+      $(document).ready(function(){
+// Dentro del mecanismo de scroll se incluye la función scrollTop cuando se desplaza desde arriba hacia abajo.
+      $(window).scroll(function(){
+        scroll = $(window).scrollTop();
+        if (scroll > 100) {
+          $('.menu').css({"position":"fixed"});
+          $('.menu').css({"width":"100%"});
+          $('.menu').css({"top":"0"});
+          $('.menu').css({"background":"#8c1919"});
+          $('.menu a').css({"color":"#fff"});
+          $('.logo').css({"color":"#fff"});
+          $('.menu').css({"box-shadow":"rgba(0, 0, 0, 0.22) 6px 1px 1px"});
+          $('.menu').css({"z-index":"100"});
+        } else {
+          // En caso de no ejecutarce scroll el menu es transaparente y se mantiene igual que al iniciar el navegador.
+          $('.menu').css({"position":"relative"});
+          $('.menu').css({"background":"transparent"});
+          $('.menu').css({"box-shadow":"0 0 0"});
+          $('.menu a').css({"color":"#fff"});
+          $('.logo').css({"color":"#000"});
+        }
+      })
+// Para el funcionamiento de responsive desing se implementa una funcioón slideToggle que permite un menu desplegable en teléfonos celulares y tablets.
+      $('.menu-icon').click(function(){
+        $('header nav').slideToggle();
+      })
+
+      })
+      </script>
+  </body>
+</html>
